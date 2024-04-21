@@ -1,32 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="play-all-model-animations.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system"></script>
   </head>
   <body>
-    <a-scene background="color: black">
-        <a-assets>
-          <a-asset-item id="cityModel" src="https://cdn.glitch.me/2ec7353f-4400-44dc-872a-65cf8e0cf088/VirtualMart.glb?v=1713155307614" ></a-asset-item>
-        </a-assets>
-        <a-entity gltf-model="#cityModel" position="-5 -2 -41"></a-entity>
-      </a-scene>
-  </body>
-  <script>
-    AFRAME.registerComponent('modify-materials', {
-      init: function () {
-        // Wait for model to load.
-        this.el.addEventListener('model-loaded', () => {
-          // Grab the mesh / scene.
-          const obj = this.el.getObject3D('mesh');
-          // Go over the submeshes and modify materials we want.
-          obj.traverse(node => {
-            if (node.name.indexOf('ship') !== -1) {
-              node.material.color.set('red');
-            }
+    <a-scene physics="gravity: 0">
+      <!-- Camera rig with controllers -->
+      <a-entity id="rig" position="0 0 0">
+        <!-- Player's camera -->
+        <a-entity
+          id="camera"
+          position="0 1.6 0"
+          camera
+          look-controls
+          kinematic-body
+          wasd-controls-enabled="false"
+        ></a-entity>
+
+        <!-- Left controller -->
+        <a-entity
+          id="left-controller"
+          laser-controls="hand: left"
+          raycaster="objects: .clickable"
+        ></a-entity>
+
+        <!-- Right controller -->
+        <a-entity
+          id="right-controller"
+          laser-controls="hand: right"
+          raycaster="objects: .clickable"
+        ></a-entity>
+      </a-entity>
+
+      <!-- Ground -->
+      <a-assets>
+        <a-asset-item id="cityModel" src="VirtualMart.glb"></a-asset-item>
+      </a-assets>
+      <a-entity gltf-model="#cityModel" modify-materials></a-entity>
+    </a-scene>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var scene = document.querySelector('a-scene');
+          var camera = document.querySelector('#camera');
+          
+          // Register device orientation event listener
+          window.addEventListener('deviceorientation', function(event) {
+            var gamma = event.gamma; // rotation around the device's z-axis
+            
+            // Adjust the scene position based on device orientation
+            scene.object3D.rotation.y = -THREE.Math.degToRad(gamma);
           });
         });
-      }
-    });
-  </script>
+      </script>
+  </body>
 </html>
