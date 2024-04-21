@@ -5,8 +5,6 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-extras"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://threejs.org/examples/js/controls/DeviceOrientationControls.js"></script>
   </head>
   <body>
     <a-scene physics="gravity: 0">
@@ -45,29 +43,20 @@
       <a-entity gltf-model="#cityModel" modify-materials></a-entity>
     </a-scene>
 
+
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var scene = document.querySelector('a-scene');
-        var camera = document.querySelector('#camera');
-        var controls = new THREE.DeviceOrientationControls(camera.object3D);
-
-        // Start DeviceOrientationControls
-        function startControls() {
-          controls.connect();
-          controls.update();
-        }
-
-        // Stop DeviceOrientationControls
-        function stopControls() {
-          controls.disconnect();
-        }
-
-        // Start controls when scene is loaded
-        scene.addEventListener('loaded', startControls);
-
-        // Stop controls when leaving the scene
-        scene.addEventListener('unloaded', stopControls);
-      });
-    </script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var scene = document.querySelector('a-scene');
+          var camera = document.querySelector('#camera');
+          
+          // Register device orientation event listener
+          window.addEventListener('deviceorientation', function(event) {
+            var gamma = event.gamma; // rotation around the device's z-axis
+            
+            // Adjust the scene position based on device orientation
+            scene.object3D.rotation.y = -THREE.Math.degToRad(gamma);
+          });
+        });
+      </script>
   </body>
 </html>
