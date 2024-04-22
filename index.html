@@ -2,12 +2,13 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="https://cdn.jsdelivr.net/npm/webvr-polyfill"></script>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-extras"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system"></script>
   </head>
   <body>
-    <a-scene physics="gravity: 0">
+    <a-scene vr-mode-ui="enabled: false" physics="gravity: 0">
       <!-- Camera rig with controllers -->
       <a-entity id="rig" position="0 0 0">
         <!-- Player's camera -->
