@@ -8,16 +8,16 @@
   <body>
     <a-scene>
       <!-- Skybox -->
-      <a-sky src="path/to/your/sky-image.jpg" rotation="0 -90 0"></a-sky>
+      <a-sky src="sky-image.jpg" rotation="0 -90 0"></a-sky>
 
       <!-- Ground -->
-      <a-plane rotation="-90 0 0" width="100" height="100" color="#7BC8A4"></a-plane>
+      <a-plane position='0 1.5 0' rotation="-90 0 0" width="100" height="100" color="#7BC8A4"></a-plane>
 
       <!-- Walls and objects -->
       <a-assets>
-        <a-asset-item id="cityModel" src="VirtualMart.glb"></a-asset-item>
+        <a-asset-item id="cityModel" src="1BHK_HOME.glb"></a-asset-item>
       </a-assets>
-      <a-entity gltf-model="#cityModel" modify-materials></a-entity>
+      <a-entity position="-300 -20 -20" gltf-model="#cityModel" modify-materials></a-entity>
     </a-scene>
 
       <!-- Camera -->
