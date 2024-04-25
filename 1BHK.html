@@ -6,29 +6,20 @@
     <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system"></script>
   </head>
   <body>
-    <a-scene>
-      <!-- Skybox -->
-      <a-sky src="sky-image.jpg" rotation="0 -90 0"></a-sky>
-      <!-- Environment -->
-      <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
-
-      <!-- Ground -->
-      <a-plane color="#a08679" height="1000" width="1000" rotation="-90 0 0" position="-5 0 0"></a-plane>
-    
-
-
+    <a-scene environment="preset: default;" renderer="antialias: true;">
+        
+      <a-assets>
+          <img id="gradient" src="images/gradient-fade.png" />
+      </a-assets>
+  
+      <a-sky 
+          color = "#001337">
+      </a-sky>
       <!-- Camera rig with controllers -->
       <a-entity id="rig" position="0 0 0">
         <!-- Player's camera -->
-        <a-entity
-          id="camera"
-          position="300 95 40"
-          camera
-          look-controls
-          kinematic-body
-          wasd-controls-enabled="false"
-        ></a-entity>
-        
+        <a-entity gltf-model="1BHK_HOME.glb" modify-materials="" position="-290 -22 0"></a-entity>
+
         <!-- Left controller -->
         <a-entity
           id="left-controller"
