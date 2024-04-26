@@ -6,12 +6,15 @@
     <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system"></script>
   </head>
   <body>
-    <a-scene background="color: black" environment="preset: forest;">
+    <a-scene environment="preset: default;" renderer="antialias: true;">
         
       <a-assets>
           <img id="gradient" src="images/gradient-fade.png" />
       </a-assets>
   
+      <a-sky 
+          color = "#001337">
+      </a-sky>
       <!-- Camera rig with controllers -->
       <a-entity id="rig" position="0 0 0">
         <!-- Player's camera -->
@@ -34,7 +37,7 @@
 
       <!-- Ground -->
       <a-assets>
-        <a-asset-item id="cityModel" src="#"></a-asset-item>
+        <a-asset-item id="cityModel" src=""></a-asset-item>
       </a-assets>
       <a-entity gltf-model="#cityModel" modify-materials></a-entity>
     </a-scene>
