@@ -8,16 +8,22 @@
   <body>
     <a-scene>
       <!-- Skybox -->
+      <a-sky src="path/to/your/sky-image.jpg" rotation="0 -90 0"></a-sky>
 
       <!-- Ground -->
       <a-plane rotation="-90 0 0" width="100" height="100" color="#7BC8A4"></a-plane>
-      <a-entity gltf-model="1bhk_homefinal.glb" modify-materials="" position="1.58 -28.5 53.5"></a-entity>
-            <!-- Camera -->
+
+      <!-- Walls and objects -->
+      <a-box position="-5 1.5 0" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
+      <a-box position="5 1.5 0" rotation="0 -45 0" color="#4CC3D9" shadow></a-box>
+      <a-box position="0 1.5 -5" color="#EF2D5E" shadow></a-box>
+      <a-box position="0 1.5 5" rotation="0 180 0" color="#EF2D5E" shadow></a-box>
+
+      <!-- Door -->
+      <a-box position="0 0.75 5" width="1" height="1.5" depth="0.1" color="#5D4037" shadow></a-box>
+
+      <!-- Camera -->
       <a-entity camera look-controls wasd-controls></a-entity>
-      <a-assets>
-        <a-asset-item id="cityModel" src="1bhk_homefinal.glb"></a-asset-item>
-      </a-assets>
-      <a-entity gltf-model="#cityModel" modify-materials></a-entity>
     </a-scene>
   </body>
 </html>
